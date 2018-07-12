@@ -15,8 +15,8 @@ public class Converter {
     }
 
     private void convertCsv(File file) throws IOException {
-        BufferedReader csvFile = new BufferedReader(new FileReader(file));
-        BufferedWriter jsonFile = new BufferedWriter(new FileWriter("converted.txt"));
+        BufferedReader csvFile = new BufferedReader(new InputStreamReader(new FileInputStream(file), "Cp1252"));
+        BufferedWriter jsonFile = new BufferedWriter(new FileWriter("converted.json"));
 
         String fileContent = csvFile.readLine();
         String[] header = fileContent.split(";");
@@ -44,7 +44,7 @@ public class Converter {
     }
 
     private Path getDefaultPath(){
-        Path path = FileSystems.getDefault().getPath("src", "csvToJson", "users.csv");
+        Path path = FileSystems.getDefault().getPath("src", "csvToJson", "activities.csv");
         return path;
     }
 }
